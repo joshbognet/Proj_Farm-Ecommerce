@@ -130,10 +130,10 @@
                                                 </div>
                                                 <div class="dropdown-menu">									
                                                     <div class="item">
-                                                        <a href="{{route('admin.dasboard')}}" title="Log in to your dashboard"><i class="fa fa-cog"></i>My Dashboard</a>
+                                                        <a href="{{route('admin.dashboard')}}" title="Log in to your dashboard"><i class="fa fa-cog"></i>My Dashboard</a>
                                                     </div>
-                                                     <div class="item">
-                                                        <a href="user-login.html" title="Log in to your customer account"><i class="fa fa-sign-in"></i>Login</a>
+                                                    <div class="item">
+                                                        <a href="{{ route('admin.categories') }}" title="view product category"><i class="fa fa-sign-in"></i>Categories</a>
                                                     </div>
                                                      
                                                 </div>

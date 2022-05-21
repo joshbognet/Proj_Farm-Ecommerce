@@ -57,7 +57,7 @@
                             </div>
                         </div>
                         
-                        <!-- Topbar Right -->
+             
                         <div class="col-md-5 col-sm-5 col-xs-12">
                             <div class="topbar-right d-flex justify-content-end">
                                 {{-- <!-- Login -->
@@ -74,7 +74,7 @@
                                     </div>
                                 </div> --}}
                                 
-                                <!-- Language -->
+                       
                                 <div class="dropdown language">
                                     <div class="dropdown-toggle" data-toggle="dropdown">
                                         <img src="{{asset('img/language-en.jpg')}}" alt="Language English">
@@ -84,12 +84,11 @@
                                             <a href="#" title="Language English"><img src="{{asset('img/language-en.jpg')}}" alt="Language English"> English</a>
                                         </div>
                                         <div class="item">
-                                            <a href="#" title="Language French"><img src="{{asset('img/language-fr.jpg')}}" alt="Language French"> French</a>
+                                             <a href="#" title="Language French"><img src="{{asset('img/language-fr.jpg')}}" alt="Language French"> French</a>
                                         </div>
                                     </div>
                                 </div>
-                                
-                                <!-- Currency -->
+                               
                                 <div class="dropdown currency">
                                     <div class="dropdown-toggle" data-toggle="dropdown">
                                         USD
@@ -109,24 +108,37 @@
                                 @if(Route::has('login'))
                                     @auth
                                         @if(Auth::user()->utype === 'ADM')
-                                            <!-- My Account -->
+                                            
                                             <div class="dropdown account">
                                                 <div class="dropdown-toggle" data-toggle="dropdown">
                                                     My Account({{Auth::user()->name}})
                                                 </div>
                                                 <div class="dropdown-menu">									
                                                     <div class="item">
-                                                        <a href="{{route('admin.dasboard')}}" title="Log in to your dashboard"><i class="fa fa-cog"></i>My Dashboard</a>
+                                                        <a href="{{route('admin.dashboard')}}" title="Log in to your dashboard"><i class="fa fa-cog"></i>My Dashboard</a>
                                                     </div>
-                                                     <div class="item">
-                                                        <a href="user-login.html" title="Log in to your customer account"><i class="fa fa-sign-in"></i>Login</a>
+                                                    
+                                                    <div class="item">
+                                                        <a href="{{ route('admin.categories') }}" title="view product category"><i class="fa fa-sign-in"></i>Categories</a>
                                                     </div>
-                                                     
+                                                    <div class="item">
+                                                        <a href="{{ route('admin.products') }}" title="view products"><i class="fa fa-product-hunt"></i>All Products</a>
+                                                    </div>
+                                                                                              
+                                                    <div class="item">
+                                                        <a href="{{ route('logout') }}"
+                                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit(); "
+                                                        title="Logout your Admin account"><i
+                                                            class="fa fa-cog"></i>Logout</a>
+                                                    </div>
+                                                    <form id="logout-form" method="POST" action="{{ route('logout') }}">
+                                                        @csrf
+                                                    </form>
                                                 </div>
                                             </div>
 
                                         @else
-                                             <!-- My Account -->
+                                         
                                             <div class="dropdown account">
                                                 <div class="dropdown-toggle" data-toggle="dropdown">
                                                     My Account({{Auth::user()->name}})
@@ -135,7 +147,10 @@
                                                     <div class="item">
                                                         <a href="{{ route('user.dashboard') }}" title="Log in to your dashboard"><i class="fa fa-cog"></i>My Dashboard</a>
                                                     </div>
-                                                     <div class="item">
+                                                    
+                                                   
+                                                    
+                                                    <div class="item">
                                                         <a href="{{ route('logout') }}"
                                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit(); "
                                                         title="Logout your customer account"><i
@@ -144,7 +159,7 @@
                                                     <form id="logout-form" method="POST" action="{{ route('logout') }}">
                                                         @csrf
     
-                                                    </form>
+                                                    </form> 
                                                 </div>
                                             </div>
 

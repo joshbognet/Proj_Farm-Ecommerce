@@ -20,17 +20,8 @@ class AuthAdmin
         if(Auth::user()->utype === 'ADM')
         
         {
-           session(['utype'=>'ADM']);
-        }
-        
-         
-        else if(Auth::user()->utype === 'USR')
-        {
-            session(['utype'=>'USR']);
-        }
-        if (session('utype') ==='ADM')
-        {
             return $next($request);
+        
         }
         else
         {
