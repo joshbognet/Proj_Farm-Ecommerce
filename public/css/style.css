@@ -1,3 +1,7 @@
+i{
+    font-style:normal !important
+}
+
 [class~=nav]>li>a:focus,
 [class~=nav]>li>a:hover {
     background: none;
@@ -35,7 +39,8 @@
 }
 
 body {
-    font-family: "poppins", verdana;
+    font-family: "verdana", sans-serif;
+    font-style:normal !important;
 }
 
 [class~=owl-theme] [class~=owl-dots] [class~=owl-dot] span:before {
@@ -262,7 +267,7 @@ body {
 }
 
 [class~=btn] {
-    font-family: "Playfair Display", serif;
+    font-family: "Verdana", serif;
 }
 
 a:hover {
@@ -446,7 +451,7 @@ a[class~=color]:hover {
 }
 
 [class~=block-title] [class~=title] {
-    font-family: "Playfair Display";
+    font-family: "Verdana" sans-serif;
 }
 
 [class~=form] form textarea,
@@ -2068,7 +2073,7 @@ input {
 }
 
 #main-menu>ul>li>a {
-    font-family: "Poppins", Verdana;
+    font-family: "Verdana", Sans-serif;
 }
 
 .block-cart .dropdown-content .cart-content {
@@ -2429,7 +2434,7 @@ input {
 [class~=block-cart] [class~=dropdown-content] [class~=cart-content] [class~=product-name],
 [class~=products-block] [class~=product-item] [class~=product-countdown] [class~=item] [class~=number],
 [class~=block-cart] [class~=dropdown-content] [class~=cart-content] [class~=total] {
-    font-family: "Playfair Display", serif;
+    font-family: "Verdana", sans-serif;
 }
 
 [class~=products-block] [class~=product-item] [class~=product-countdown] [class~=item] [class~=number] {
@@ -2862,7 +2867,7 @@ input {
 }
 
 [class~=block-cart] [class~=dropdown-content] [class~=cart-content] [class~=cart-button] {
-    font-family: "Playfair Display", serif;
+    font-family: "Verdana", sans-serif;
 }
 
 [class~=products-block] [class~=product-item]:hover {
@@ -2947,7 +2952,7 @@ input {
 }
 
 [class~=products-block] [class~=product-item] [class~=product-title] {
-    font-family: "Poppins", Verdana;
+    font-family: "Verdana", sans-serif;
 }
 
 [class~=intro] [class~=intro-right],
@@ -2975,7 +2980,7 @@ input {
 }
 
 #main-menu>ul>li[class~=dropdown]:hover>a:before {
-    font-family: "FontAwesome";
+    font-family: "Verdana" sans-serif;
 }
 
 [class~=product-tab] [class~=tab-nav] ul li a {
@@ -4188,7 +4193,7 @@ input {
 }
 
 #main-menu [class~=dropdown-menu] ul li a {
-    font-family: "Playfair Display", serif;
+    font-family: "Verdana", sans-serif;
 }
 
 [class~=product-categories] [class~=item] {
@@ -4404,7 +4409,7 @@ input {
 }
 
 [class~=intro] [class~=intro-header] h3 {
-    font-family: "Playfair Display";
+    font-family: "Verdana", sans-serif;
 }
 
 [class~=product-tab] [class~=tab-nav] ul li a img {
@@ -4687,7 +4692,7 @@ input {
 
 [class~=intro] [class~=intro-header] h3,
 [class~=intro] [class~=intro-header] p {
-    font-style: italic;
+    font-style: normal !important;
 }
 
 [class~=products-block][class~=layout-5] [class~=product-item] {
@@ -4851,7 +4856,7 @@ input {
 }
 
 [class~=intro] [class~=intro-header] p {
-    font-family: "Playfair Display";
+    font-family: "Verdana", sans-serif;
 }
 
 [class~=intro] [class~=intro-header] p {
@@ -5095,7 +5100,7 @@ input {
 }
 
 [class~=product-category] [class~=item] [class~=title] {
-    font-family: "Playfair Display", sans-serif;
+    font-family: "Verdana", sans-serif;
 }
 
 .product-categories .item:last-child {
@@ -5166,7 +5171,7 @@ input {
 }
 
 [class~=product-tab] [class~=tab-nav] ul li {
-    font-style: italic;
+    font-style: normal !important;
 }
 
 [class~=pagination-bar]:before,
@@ -5680,7 +5685,7 @@ input {
 
 [class~=product-price],
 [class~=intro] [class~=intro-item] h4 {
-    font-family: "Playfair Display", serif;
+    font-family: "Verdana", serif;
 }
 
 .products-block.layout-3 .product-item .product-buttons i {
@@ -5926,7 +5931,7 @@ input {
 }
 
 [class~=product-rating] [class~=star]:after {
-    font-family: "FontAwesome";
+    font-family: "FontAwesome", sans-serif;
 }
 
 .products-block.nav-round .products .owl-nav .owl-next {
@@ -6260,7 +6265,7 @@ input {
 }
 
 [class~=testimonial] [class~=item] {
-    font-family: "Playfair Display", sans-serif;
+    font-family: "FontAwesome";
 }
 
 [class~=product-categories] [class~=item] [class~=sub-category] [class~=item] a {
@@ -6453,7 +6458,7 @@ input {
 }
 
 [class~=product-tab] {
-    font-family: "Playfair Display", sans-serif;
+    font-family: "Verdana", sans-serif;
 }
 
 .partners .partners-wrap {
@@ -6493,7 +6498,7 @@ input {
 }
 
 [class~=latest-news] [class~=blog-info] [class~=blog-title] {
-    font-family: "Playfair Display", serif;
+    font-family: "Verdana", serif;
 }
 
 [class~=pagination-bar] [class~=pagination] ul li a[class~=prev] {
@@ -6818,7 +6823,7 @@ input {
 }
 
 [class~=payment-intro] [class~=item] [class~=title] {
-    font-family: "Playfair Display", serif;
+    font-family: "Verdana", serif;
 }
 
 [class~=mainmenu-active] #mobile-menu,
@@ -7083,7 +7088,7 @@ input {
 }
 
 [class~=category-tab] [class~=tab-nav] ul li a {
-    font-family: "roboto", sans-serif;
+    font-family: "Verdana", sans-serif;
 }
 
 [class~=home-2] [class~=left-column] [class~=payment-intro] [class~=block-content] [class~=item],
@@ -7213,7 +7218,7 @@ input {
 }
 
 [class~=category-tab] [class~=tab-nav] ul li a {
-    font-style: normal;
+    font-style: normal !important;
 }
 
 [class~=sidebar] [class~=product-categories] [class~=item] [class~=sub-category] [class~=item]:before {
@@ -7356,7 +7361,7 @@ input {
 }
 
 [class~=home-2] [class~=newsletter] [class~=block-title] {
-    font-family: "Playfair Display", serif;
+    font-family: "Verdana", serif;
 }
 
 #mobile-menu [class~=close-mobile-menu] [class~=close-menu],
@@ -7834,7 +7839,7 @@ input {
 }
 
 [class~=products-block][class~=layout-4] [class~=product-item] [class~=product-countdown] [class~=item] [class~=number] {
-    font-family: "Roboto", sans-serif;
+    font-family: "Verdana", sans-serif;
 }
 
 [class~=home-2] #footer [class~=footer],
@@ -8283,7 +8288,7 @@ input {
 }
 
 [class~=product-categories] [class~=item]>a {
-    font-family: "Playfair Display", serif;
+    font-family: "Verdana", serif;
 }
 
 [class~=home-2] [class~=two-columns] [class~=left-column] [class~=block-title] h2 {
@@ -9625,7 +9630,7 @@ input {
 }
 
 [class~=home-2] [class~=two-columns] [class~=left-column] [class~=block-title] h2 {
-    font-family: "playfair display";
+    font-family: "Verdana";
 }
 
 [class~=home-4] #main-menu {
@@ -9769,7 +9774,7 @@ input {
 }
 
 [class~=home-2] [class~=left-column] [class~=payment-intro] [class~=block-content] [class~=item] [class~=title] {
-    font-family: "Playfair Display", serif;
+    font-family: "Verdana", serif;
 }
 
 .sidebar .filter-color .left,
@@ -11853,7 +11858,7 @@ input {
 }
 
 [class~=home-3] [class~=banners] [class~=banner-item] [class~=text] h3 {
-    font-family: "Playfair Display";
+    font-family: "Verdana";
 }
 
 [class~=product-category-page] [class~=products-bar]:before {
@@ -12122,7 +12127,7 @@ input {
 }
 
 [class~=post-item] [class~=post-title] {
-    font-family: "Playfair Display", sans-serif;
+    font-family: "Verdana", sans-serif;
 }
 
 [class~=home-4] #main-menu>ul>li>a {
@@ -12651,7 +12656,7 @@ input {
 }
 
 [class~=product-detail] [class~=product-tab] [class~=tab-content] {
-    font-family: "roboto", sans-serif;
+    font-family: "Verdana", sans-serif;
 }
 
 .sidebar .product-categories .item .arrow {
@@ -13001,7 +13006,7 @@ input {
 }
 
 [class~=sidebar] [class~=product-filter] [class~=filter-item] [class~=filter-title] {
-    font-family: "Playfair Display", sans-serif;
+    font-family: "Verdana", sans-serif;
 }
 
 [class~=register-page] [class~=register-form],
@@ -13765,7 +13770,7 @@ input {
 }
 
 #footer [class~=footer] [class~=block-title] {
-    font-family: "Playfair Display", sans-serif;
+    font-family: "Verdana", sans-serif;
 }
 
 [class~=newsletter-popup] form button {
@@ -14484,7 +14489,7 @@ input {
 
 .newsletter-popup .popup .block-title,
 .product-detail .payment-intro .block-content .item .title {
-    font-family: "Playfair Display", serif;
+    font-family: "Verdana", serif;
 }
 
 [class~=home-5] #footer [class~=footer] [class~=block-title] {
@@ -14738,7 +14743,7 @@ input {
 }
 
 [class~=product-detail] [class~=product-tab] [class~=tab-nav] ul li a {
-    font-style: normal;
+    font-style: normal !important;
 }
 
 [class~=home-5] #footer [class~=footer] [class~=newsletter] form button {
@@ -14911,7 +14916,7 @@ input {
 }
 
 [class~=product-detail] [class~=product-tab] [class~=tab-nav] ul li a {
-    font-family: "Playfair Display", serif;
+    font-family: "Verdana", serif;
 }
 
 [class~=newsletter-popup] [class~=popup] {
@@ -15077,7 +15082,7 @@ input {
 }
 
 #breadcrumb {
-    font-family: "Playfair Display", sans-serif;
+    font-family: "Verdana", sans-serif;
 }
 
 [class~=reviews] [class~=comments-list] [class~=item] [class~=comment-body] {
@@ -15689,7 +15694,9 @@ pl-4,
 .bg-white {
     color: white;
     margin: 2px;
-    background-color: green !important;
+    background-color: rgb(34, 139, 34)
+
+ !important;
     font: 14px bold, "ARIAL";
 }
 

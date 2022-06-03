@@ -20,7 +20,8 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:300,400,700" rel="stylesheet">
-
+    
+    
     <!-- Vendor CSS -->
     <link rel="stylesheet" href="{{ asset('libs/bootstrap/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('libs/font-awesome/css/font-awesome.min.css') }}">
@@ -30,10 +31,19 @@
     <link rel="stylesheet" href="{{ asset('libs/nivo-slider/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('libs/owl.carousel/assets/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('libs/slider-range/css/jslider.css') }}">
+    {{-- <link rel="stylesheet" type="text/css" href="{{asset('assets/css/animate.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('assets/css/font-awesome.min.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap.min.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('assets/css/owl.carousel.min.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{asset('assets/css/chosen.min.css')}}"> --}}
+	<link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
+	{{-- <link rel="stylesheet" type="text/css" href="{{asset('assets/css/color-01.css')}}"> --}}
+<!-- CSS only -->
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/reponsive.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     @livewireStyles
 </head>
 
@@ -119,10 +129,16 @@
                                                     </div>
                                                     
                                                     <div class="item">
-                                                        <a href="{{ route('admin.categories') }}" title="view product category"><i class="fa fa-sign-in"></i>Categories</a>
+                                                        <a href="{{ route('admin.categories') }}" title="Categories"><i class="fa fa-list-alt"></i>Categories</a>
                                                     </div>
                                                     <div class="item">
-                                                        <a href="{{ route('admin.products') }}" title="view products"><i class="fa fa-product-hunt"></i>All Products</a>
+                                                        <a href="{{ route('admin.products') }}" title="All Products"><i class="fa fa-product-hunt"></i>All Products</a>
+                                                    </div>
+                                                    <div class="item">
+                                                        <a href="{{ route('admin.homeslider') }}" title="Manage Home Slider"><i class="fa fa-cog"></i>Manage Home Slider </a>
+                                                    </div>
+                                                    <div class="item">
+                                                        <a href="{{ route('admin.homecategories') }}" title="Mange Home Categories"><i class=""><i>Manage Home Categories </a>
                                                     </div>
                                                                                               
                                                     <div class="item">
@@ -513,8 +529,8 @@
                                 Plateau</a></div>
                     </div>
                 </div>
-            </footer>
-
+            </footer> 
+            
             <!-- Go Up button -->
             <div class="go-up">
                 <a href="#">
@@ -533,9 +549,10 @@
                 </div>
             </div>
     </div>
-
-        <!-- Vendor JS -->
+      
+     
         <script src="{{ asset('libs/jquery/jquery.js') }}"></script>
+        
         <script src="{{ asset('libs/bootstrap/js/bootstrap.js') }}"></script>
         <script src="{{ asset('libs/jquery.countdown/jquery.countdown.js') }}"></script>
         <script src="{{ asset('libs/nivo-slider/js/jquery.nivo.slider.js') }}"></script>
@@ -545,10 +562,22 @@
         <script src="{{ asset('libs/slider-range/js/draggable-0.1.js') }}"></script>
         <script src="{{ asset('libs/slider-range/js/jquery.slider.js') }}"></script>
         <script src="{{ asset('libs/elevatezoom/jquery.elevatezoom.js') }}"></script>
+        
         <script src="{{asset('js/functions.js')}}"></script>
+<!-- JavaScript Bundle with Popper -->
+
+     
+        {{-- <script src="{{asset('assets/js/owl.carousel.min.js')}}"></script>   
+         
+	    <script src="{{asset('assets/js/jquery.sticky.js')}}"></script>  --}}
+	  
         <!-- Template CSS -->
         <script src="{{ asset('js/main.js') }}"></script>
+        <script src="{{asset('assets/js/functions.js')}}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        
         @livewireScripts
+        @stack('scripts')
     </body>
 
     </html>
