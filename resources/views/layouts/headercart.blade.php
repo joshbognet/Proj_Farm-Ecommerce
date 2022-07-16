@@ -34,7 +34,9 @@
 		<link rel="stylesheet" href="{{asset('css/style.css')}}">
 		<link rel="stylesheet" href="{{asset('css/reponsive.css')}}">
 	    <link rel="stylesheet" href="{{asset('css/material-design-iconic-font.min.css')}}">
-        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker-standalone.min.css" integrity="sha256-SMGbWcp5wJOVXYlZJyAXqoVWaE/vgFA5xfrH3i/jVw0=" crossorigin="anonymous" />
+ 	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.6.0/nouislider.min.css" integrity="sha512-qveKnGrvOChbSzAdtSs8p69eoLegyh+1hwOMbmpCViIwj7rn4oJjdmMvWOuyQlTOZgTlZA0N2PXA7iA8/2TUYA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 		@livewireStyles
 </head>    
     <body class="home home-1">
@@ -216,22 +218,23 @@
 								<span id="toggle-mobile-menu"><i class="zmdi zmdi-menu"></i></span>
 							</div>
 							
-							<!-- Cart -->
+							
+							
 							<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 								<div class="block-cart dropdown">
 									
 									<div class="cart-title">
 										
 											<i class="fa fa-shopping-basket"></i>
-											@if(Cart::count()>0)
-											<span class="cart-count">{{ Cart::count() }}</span>
+											@if(Cart::instance('cart')->count()>0)
+											<span class="cart-count">{{ Cart::instance('cart')->count() }}</span>
 											@endif
 									</div>
 									
 									<div class="dropdown-content">
 										<div class="cart-content">
 											<table>
-												@if(Cart::count()>0)
+												@if(Cart::instance('cart')->count()>0)
 												<tbody>
 													@foreach(Cart::content() as $item)
 													<tr>
@@ -282,11 +285,24 @@
 													</tr>
 												</tbody>
 												@else
-									                <p>No Item in Cart</p>
-								                @endif
+													<p>No Item in Cart</p>
+												@endif
 											</table>
 										</div>
 									</div>
+								</div>
+								<div class="block-cart dropdown shift">
+									
+									<div class="cart-title">
+										
+											<i class="fa fa-heart"></i>
+											@if(Cart::instance('wishlist')->count()>0)
+												<span class="index">{{Cart::instance('wishlist')->count()}} item</span>		
+	
+											@endif
+									</div>
+									
+									
 								</div>	
 							</div>	
 						</div>
@@ -628,8 +644,12 @@
 		<!-- Template CSS -->
 		 <script src="{{asset('js/main.js')}}"></script> 
 		{{-- <script src="{{asset('js/qty.js')}}"></script> --}}
-		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js" integrity="sha256-5YmaxAwMjIpMrVlK84Y/+NjCpKnFYa8bWWBbUHSBGfU=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.6.0/nouislider.min.js" integrity="sha512-1mDhG//LAjM3pLXCJyaA+4c+h5qmMoTc7IuJyuNNPaakrWT9rVTxICK4tIizf7YwJsXgDC2JP74PGCc7qxLAHw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        
 		@livewireScripts
+		@stack('scripts')
 	</body>
 
 

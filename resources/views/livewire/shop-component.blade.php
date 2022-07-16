@@ -225,17 +225,10 @@
                                 </div>
                                 
                                 <div class="filter-item">
-                                    <h3 class="filter-title">By Price</h3>
+                                    <h3 class="filter-title">By Price <span class="text-info">&#8358;{{$min_price}} - &#8358;{{$max_price}}</span></h3>
                                     
                                     <div class="block-content">
-                                        <div id="slider-range" class="tiva-filter">
-                                            <div class="filter-item price-filter">
-                                                <div class="layout-slider">
-                                                    <input id="price-filter" name="price" value="0;100" />
-                                                </div>
-                                                <div class="layout-slider-settings"></div>
-                                            </div>
-                                        </div>
+                                        <div id="slider" wire:ignore></div>
                                     </div>
                                 </div>
                                 
@@ -328,7 +321,7 @@
                                             <form action="#" class="pull-right">
                                                 <div class="select">
                                                     <select class="form-control" wire:model="sorting">
-                                                        <option value="default" selected="selected">Sort By</option>
+                                                        <option value="default" selected="selected">Default Sorting</option>
                                                         <option value="price">Price: Lowest first</option>
                                                         <option value="price-desc">Price: Highest first</option>
                                                         <option value="date">New</option>
@@ -339,9 +332,9 @@
                                             </form>
                                             <form action="#" class="pull-right">
                                                 <div class="select">
-                                                    <select class="form-control">
+                                                    <select class="form-control" wire:model="pagesize">
                                                         
-                                                        <option selected="selected"value="12" wire:model="pagesize">12 per page</option>
+                                                        <option selected="selected"value="12" >12 per page</option>
                                                         <option value="16">16</option>
                                                         <option value="18">18</option>
                                                         <option value="21">21</option>
@@ -358,12 +351,38 @@
                             </div>
                             
                             <div class="tab-content">
-                                
+                              <style>
+                                 .product-wish{
+                                    position:absolute;
+                                      top:10%;
+                                      z-index:99;
+                                      left:0;
+                                      right:30px;
+                                      padding-top:0;
+                                      text-align:right;
+
+                                 }
+                                 .product-wish .fa:hover{
+                                   color:#636400;
+                                 }
+                                 .product-wish .fa{
+                                    color: #cbcbcb;
+                                    font-size:32px;
+                                 }
+                                 .fill-heart{
+                                      color:green !important;
+                                    
+                                  }
+                              </style>
                                 
                                 
                                 <div class="tab-pane active" id="products-grid">
                                     <div class="products-block">
                                         <div class="row">
+                                            @php
+                                                $witems = Cart::instance('wishlist')->content()->pluck('id');
+                                            @endphp
+
                                             @foreach ($products as $product)
                                                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                                                                                     
@@ -377,7 +396,7 @@
                                                         <div class="product-title">
                                                             <a href="product-detail-left-sidebar.html">
                                                                 {{$product->name}}
-                                                            </a>
+                                                          </a>
                                                         </div>
                                                         
                                                         <div class="product-rating">
@@ -389,17 +408,23 @@
                                                         </div>
                                                         
                                                         <div class="product-price">
-                                                            <span class="sale-price">=N={{$product->regular_price}}</span>
+                                                            <span class="sale-price">&#8358;{{$product->regular_price}}</span>
                                                         
                                                         </div>
-                                                        
+                                                        <div class="product-wish">
+                                                            @if($witems->contains($product->id))
+                                                                <a class="add-wishlist " href="#" wire:click.prevent ="removeFromWishlist({{ $product->id}})">
+                                                                    <i class="fa fa-heart fill-heart" aria-hidden="true"></i>												
+                                                                </a>
+                                                            @else
+                                                                <a class="add-wishlist " href="#" wire:click.prevent="addToWishlist({{$product->id}},'{{$product->name}}',{{$product->regular_price}})" >
+                                                                    <i class="fa fa-heart " aria-hidden="true"></i>												
+                                                                </a>
+                                                            @endif
+                                                        </div>
                                                         <div class="product-buttons">
                                                             <a class="add-to-cart" href="#" wire:click.prevent="store({{ $product->id}}, '{{$product->name}}', {{ $product->regular_price }})">
                                                                 <i class="fa fa-shopping-basket" aria-hidden="true"></i>
-                                                            </a>
-                                                            
-                                                            <a class="add-wishlist" href="#">
-                                                                <i class="fa fa-heart" aria-hidden="true"></i>												
                                                             </a>
                                                             
                                                             <a class="quickview" href="{{route('product.details', ['slug' => $product->slug])}}">
@@ -414,310 +439,12 @@
                                     </div>
                                 </div> 
                                 
-                                <!-- Products List -->
-                                <div class="tab-pane" id="products-list">
-                                    <div class="products-block layout-5">
-                                        <div class="product-item">
-                                            <div class="row">
-                                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                               
                                 
-                                                        
-                                                    
-                                                    <div class="product-image">
-                                                        <a href="product-detail-left-sidebar.html">
-                                                            <img class="img-responsive" src="img/product/4.jpg" alt="Product Image">
-                                                        </a>
-                                                </div>
-                                                
-                                                <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
-                                                    <div class="product-info">
-                                                        <div class="product-title">
-                                                            <a href="product-detail-left-sidebar.html">
-                                                                Organic Strawberry Fruits
-                                                            </a>
-                                                        </div>
-                                                        
-                                                        <div class="product-rating">
-                                                            <div class="star on"></div>
-                                                            <div class="star on"></div>
-                                                            <div class="star on "></div>
-                                                            <div class="star on"></div>
-                                                            <div class="star"></div>
-                                                            <span class="review-count">(3 Reviews)</span>
-                                                        </div>
-                                                        
-                                                        <div class="product-price">
-                                                            <span class="sale-price">$80.00</span>
-                                                            <span class="base-price">$90.00</span>
-                                                        </div>
-                                                        
-                                                        <div class="product-stock">
-                                                            <i class="fa fa-check-square-o" aria-hidden="true"></i>In stock  
-                                                        </div>
-                                                        
-                                                        <div class="product-description">
-                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sapien urna, commodo ut molestie vitae, feugiat tincidunt ligula...
-                                                        </div>
-                                                        
-                                                        <div class="product-buttons">
-                                                            <a class="add-to-cart" href="#">
-                                                                <i class="fa fa-shopping-basket" aria-hidden="true"></i>
-                                                                <span>Add To Cart</span>
-                                                            </a>
-                                                            
-                                                            <a class="add-wishlist" href="#">
-                                                                <i class="fa fa-heart" aria-hidden="true"></i>												
-                                                            </a>
-                                                            
-                                                            <a class="quickview" href="#">
-                                                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="product-item">
-                                            <div class="row">
-                                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                                    <div class="product-image">
-                                                        <a href="product-detail-left-sidebar.html">
-                                                            <img class="img-responsive" src="img/product/14.jpg" alt="Product Image">
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
-                                                    <div class="product-info">
-                                                        <div class="product-title">
-                                                            <a href="product-detail-left-sidebar.html">
-                                                                Organic Strawberry Fruits
-                                                            </a>
-                                                        </div>
-                                                        
-                                                        <div class="product-rating">
-                                                            <div class="star on"></div>
-                                                            <div class="star on"></div>
-                                                            <div class="star on "></div>
-                                                            <div class="star on"></div>
-                                                            <div class="star"></div>
-                                                            <span class="review-count">(3 Reviews)</span>
-                                                        </div>
-                                                        
-                                                        <div class="product-price">
-                                                            <span class="sale-price">$80.00</span>
-                                                            <span class="base-price">$90.00</span>
-                                                        </div>
-                                                        
-                                                        <div class="product-stock">
-                                                            <i class="fa fa-check-square-o" aria-hidden="true"></i>In stock  
-                                                        </div>
-                                                        
-                                                        <div class="product-description">
-                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sapien urna, commodo ut molestie vitae, feugiat tincidunt ligula...
-                                                        </div>
-                                                        
-                                                        <div class="product-buttons">
-                                                            <a class="add-to-cart" href="#">
-                                                                <i class="fa fa-shopping-basket" aria-hidden="true"></i>
-                                                                <span>Add To Cart</span>
-                                                            </a>
-                                                            
-                                                            <a class="add-wishlist" href="#">
-                                                                <i class="fa fa-heart" aria-hidden="true"></i>												
-                                                            </a>
-                                                            
-                                                            <a class="quickview" href="#">
-                                                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    
-                                        <div class="product-item">
-                                            <div class="row">
-                                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                                    <div class="product-image">
-                                                        <a href="product-detail-left-sidebar.html">
-                                                            <img class="img-responsive" src="img/product/17.jpg" alt="Product Image">
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
-                                                    <div class="product-info">
-                                                        <div class="product-title">
-                                                            <a href="product-detail-left-sidebar.html">
-                                                                Organic Strawberry Fruits
-                                                            </a>
-                                                        </div>
-                                                        
-                                                        <div class="product-rating">
-                                                            <div class="star on"></div>
-                                                            <div class="star on"></div>
-                                                            <div class="star on "></div>
-                                                            <div class="star on"></div>
-                                                            <div class="star"></div>
-                                                            <span class="review-count">(3 Reviews)</span>
-                                                        </div>
-                                                        
-                                                        <div class="product-price">
-                                                            <span class="sale-price">$80.00</span>
-                                                            <span class="base-price">$90.00</span>
-                                                        </div>
-                                                        
-                                                        <div class="product-stock">
-                                                            <i class="fa fa-check-square-o" aria-hidden="true"></i>In stock  
-                                                        </div>
-                                                        
-                                                        <div class="product-description">
-                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sapien urna, commodo ut molestie vitae, feugiat tincidunt ligula...
-                                                        </div>
-                                                        
-                                                        <div class="product-buttons">
-                                                            <a class="add-to-cart" href="#">
-                                                                <i class="fa fa-shopping-basket" aria-hidden="true"></i>
-                                                                <span>Add To Cart</span>
-                                                            </a>
-                                                            
-                                                            <a class="add-wishlist" href="#">
-                                                                <i class="fa fa-heart" aria-hidden="true"></i>												
-                                                            </a>
-                                                            
-                                                            <a class="quickview" href="#">
-                                                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    
-                                        <div class="product-item">
-                                            <div class="row">
-                                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                                    <div class="product-image">
-                                                        <a href="product-detail-left-sidebar.html">
-                                                            <img class="img-responsive" src="img/product/8.jpg" alt="Product Image">
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
-                                                    <div class="product-info">
-                                                        <div class="product-title">
-                                                            <a href="product-detail-left-sidebar.html">
-                                                                Organic Strawberry Fruits
-                                                            </a>
-                                                        </div>
-                                                        
-                                                        <div class="product-rating">
-                                                            <div class="star on"></div>
-                                                            <div class="star on"></div>
-                                                            <div class="star on "></div>
-                                                            <div class="star on"></div>
-                                                            <div class="star"></div>
-                                                            <span class="review-count">(3 Reviews)</span>
-                                                        </div>
-                                                        
-                                                        <div class="product-price">
-                                                            <span class="sale-price">$80.00</span>
-                                                            <span class="base-price">$90.00</span>
-                                                        </div>
-                                                        
-                                                        <div class="product-stock">
-                                                            <i class="fa fa-check-square-o" aria-hidden="true"></i>In stock  
-                                                        </div>
-                                                        
-                                                        <div class="product-description">
-                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sapien urna, commodo ut molestie vitae, feugiat tincidunt ligula...
-                                                        </div>
-                                                        
-                                                        <div class="product-buttons">
-                                                            <a class="add-to-cart" href="#">
-                                                                <i class="fa fa-shopping-basket" aria-hidden="true"></i>
-                                                                <span>Add To Cart</span>
-                                                            </a>
-                                                            
-                                                            <a class="add-wishlist" href="#">
-                                                                <i class="fa fa-heart" aria-hidden="true"></i>												
-                                                            </a>
-                                                            
-                                                            <a class="quickview" href="#">
-                                                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    
-                                        <div class="product-item">
-                                            <div class="row">
-                                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                                    <div class="product-image">
-                                                        <a href="product-detail-left-sidebar.html">
-                                                            <img class="img-responsive" src="img/product/9.jpg" alt="Product Image">
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
-                                                    <div class="product-info">
-                                                        <div class="product-title">
-                                                            <a href="product-detail-left-sidebar.html">
-                                                                Organic Strawberry Fruits
-                                                            </a>
-                                                        </div>
-                                                        
-                                                        <div class="product-rating">
-                                                            <div class="star on"></div>
-                                                            <div class="star on"></div>
-                                                            <div class="star on "></div>
-                                                            <div class="star on"></div>
-                                                            <div class="star"></div>
-                                                            <span class="review-count">(3 Reviews)</span>
-                                                        </div>
-                                                        
-                                                        <div class="product-price">
-                                                            <span class="sale-price">$80.00</span>
-                                                            <span class="base-price">$90.00</span>
-                                                        </div>
-                                                        
-                                                        <div class="product-stock">
-                                                            <i class="fa fa-check-square-o" aria-hidden="true"></i>In stock  
-                                                        </div>
-                                                        
-                                                        <div class="product-description">
-                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sapien urna, commodo ut molestie vitae, feugiat tincidunt ligula...
-                                                        </div>
-                                                        
-                                                        <div class="product-buttons">
-                                                            <a class="add-to-cart" href="#">
-                                                                <i class="fa fa-shopping-basket" aria-hidden="true"></i>
-                                                                <span>Add To Cart</span>
-                                                            </a>
-                                                            
-                                                            <a class="add-wishlist" href="#">
-                                                                <i class="fa fa-heart" aria-hidden="true"></i>												
-                                                            </a>
-                                                            
-                                                            <a class="quickview" href="#">
-                                                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         
                             <div class="pagination-bar">
+                                
                                 <div class="row">
                                     <div class="col-md-4 col-sm-4 col-xs-12">
                                         <div class="text">Showing 1-12 of 20 item(s)</div>
@@ -725,14 +452,15 @@
                                     
                                     <div class="col-md-8 col-sm-8 col-xs-12">
                                         <div class="pagination">
-                                            <ul class="page-list">
-                                                {{$products->links()}}
-                                                 {{-- <li><a href="#" class="prev">Previous</a></li> --}}
-                                                {{-- <li><a href="#" class="current">1</a></li>
+                                            {{$products->links()}}
+                                            {{-- <ul class="page-list"> 
+                                               
+                                                  <li><a href="#" class="prev">Previous</a></li> 
+                                                 <li><a href="#" class="current">1</a></li>
                                                 
                                                 <li><a href="#">2</a></li>
-                                                <li><a href="#" class="next">Next</a></li>  --}}
-                                            </ul>
+                                                <li><a href="#" class="next">Next</a></li>  
+                                            </ul> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -745,3 +473,27 @@
             
     </div>
 </div>
+
+@push('scripts')
+    <script>
+        var slider = document.getElementById('slider');
+        noUiSlider.create(slider,{
+            start : [1,1000],
+            connect:true,
+            range :{
+                'min' : 1,
+                'max' : 1000
+            },
+            pips:{
+                mode:'steps',
+                stepped:true,
+                density:4
+            }
+        });
+
+        slider.noUiSlider.on('update',function(value){
+            @this.set('min_price',value[0]);
+            @this.set('max_price',value[1]);
+        });
+    </script>
+@endpush

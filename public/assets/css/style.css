@@ -459,7 +459,7 @@ input,textarea{
 }
 .center-section .wrap-search-form{
 	display: inline-block;
-	border: 2px solid;
+	border: 2px solid #78b144;
 	position: relative;
 	max-width: 522px;
 	width: 100%;
@@ -564,6 +564,7 @@ input,textarea{
     position: absolute;
     right: 0;
     top: 0;
+    background:#78b144;
 }
 .center-section .wrap-search-form button i{
 	font-size: 15px;
@@ -626,7 +627,7 @@ header.fill-color .main-info-area .right-section .wrap-icon-section .link-direct
     display: block;
     float: left;
     font-size: 25px;
-    color: #aaa;
+    color: #78b144;
     margin: 7px 8px 0 0;
 }
 .main-info-area .right-section .wrap-icon-section .left-info{
@@ -655,7 +656,7 @@ header.fill-color .main-info-area .right-section .wrap-icon-section .link-direct
 .header-nav-section li>a{
 	display: inline-block;
 	font-weight: 600;
-	color: #333333;
+	color: #33333;
 	text-transform: uppercase;
 	font-size: 13px;
 	padding: 0;
@@ -720,7 +721,7 @@ li.menu-item .nav-label.sale-label::before{
 	background: transparent;
 }
 .header-style-1 .primary-nav-section{
-	background: #444444;
+	background: green;
 }
 .primary{
 	position: relative;
@@ -1001,6 +1002,7 @@ li.menu-item .nav-label.sale-label::before{
 .wrap-main-slide .item-slide .img-slide,
 .wrap-main-slide .item-slide{
     min-height: 190px;
+    padding:5px;
 }
 .wrap-main-slide .slide-carousel .slide-info{
     position: absolute;
@@ -4877,6 +4879,8 @@ table.shop_attributes tbody{
     float: left;
     width: 50%;
 }
+
+}
 .summary-checkout .summary-item.payment-method{
     padding-right: 15px;
 }
@@ -5595,6 +5599,7 @@ table.shop_attributes tbody{
 .wrap-footer-item .wrap-hotline-footer .phone-number,
 .topbar-menu-area .topbar-menu .label-before.fa-mobile{
     color: #ff2832 !important;
+
 }
 .fill-color .header-nav-section ul li a{
     color: #ffffff;

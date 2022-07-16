@@ -1,11 +1,21 @@
 <div id="all">
+<style>
+    .regprice
+    {
+        font-weight:100px;
+        font-size:30px !important;
+        color:#aaaaaa !important;
+        padding-left:10px;
+        text-decoration:line-through;
 
+    }
+</style>
     <!-- Main Content -->
     <div id="content" class="site-content">
         <!-- Breadcrumb -->
         <div id="breadcrumb">
             <div class="container">
-                <h2 class="title">Organic Strawberry Fruits</h2>
+                <h2 class="title">{{ $product->name  }}</h2>
                 
                 <ul class="breadcrumb">
                     <li><a href="/" title="Home">Home</a></li>
@@ -21,7 +31,7 @@
                 <!-- Sidebar -->
                 <div id="left-column" class="sidebar col-lg-3 col-md-3 col-sm-3 col-xs-12">
                     <!-- Block - Product Categories -->
-                    <div class="block product-categories">
+                    {{-- <div class="block product-categories">
                         <h3 class="block-title">Categories</h3>
                         
                         <div class="block-content">
@@ -110,7 +120,7 @@
                                 <a class="category-title" href="product-grid-left-sidebar.html">Fresh Meats</a>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     
                     
                     <!-- Block - Products -->
@@ -147,8 +157,8 @@
                                                 </div>
                                                 
                                                 <div class="product-price">
-                                                    <span class="sale-price">=N={{$p_product->regular_price}}</span>
-                                                    <span class="base-price">=N=38.00</span>
+                                                    <span class="sale-price">&#8358;{{$p_product->regular_price}}</span>
+                                                    <span class="base-price">&#8358;38.00</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -206,17 +216,26 @@
                                     
                                     <div class="product-right col-md-7 col-sm-7 col-xs-12">
                                         <div class="product-info">
-                                            <div class="product-price">
-                                                <span class="sale-price">=N={{$product->regular_price}}</span>
-                                                <span class="base-price">=N=90.00</span>
-                                            </div>
-                                            
+                                            @if($product->sale_price>0 && $sale->status == 1 && $sale->sale_date > Carbon\Carbon::now())
+
+                                                <div class="product-price">
+                                                    <span class="sale-price">&#8358;{{$product->sale_price}}</span>
+
+                                                    <del><span class="product-price regprice" >&#8358;{{$product->regular_price}}</span></del>
+                                                </div>
+                                            @else
+                                                <div class="product-price">
+                                                    <span class="sale-price">&#8358;{{$product->sale_price}}</span>
+                                                    
+                                                </div>
+
+                                            @endif
                                             <div class="product-stock">
                                                 <span class="availability">Availability :</span><i class="fa fa-check-square-o" aria-hidden="true"></i>{{$product->stock_status}}
                                             </div>
                                             
                                             <div class="product-short-description">
-                                                {{$product->short_description}}
+                                                {!! $product->short_description !!} 
                                             </div>
                                             
                                             <div class="product-variants border-bottom">
@@ -267,20 +286,28 @@
                                                     <span class="control-label">QTY :</span>
                                                     <div class="qty">
                                                         <div class="input-group">
-                                                            <input type="text" name="qty" value="1" data-min="1">
+                                                            <input type="text" name="qty" value="1" data-min="1" wire:model="qty">
                                                             <span class="adjust-qty">
-                                                                <span class="adjust-btn plus">+</span>
-                                                                <span class="adjust-btn minus">-</span>
+                                                                <a  wire:click.prevent="increaseQuantity"><span class="adjust-btn plus">+</span></a>
+                                                                <a  wire:click.prevent="decreaseQuantity"><span class="adjust-btn minus">-</span></a>
                                                             </span>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 
                                                 <div class="product-buttons">
-                                                    <a class="add-to-cart" href="#" wire:click.prevent="store({{ $product->id}}, '{{$product->name}}', {{ $product->regular_price }})">
-                                                        <i class="fa fa-shopping-basket" aria-hidden="true"></i>
-                                                        <span>Add To Cart</span>
-                                                    </a>
+                                                    @if($product->count() > 0 && $sale->status == 1 && $sale->sale_date > Carbon\Carbon::now() )
+                                                        <a class="add-to-cart" href="#" wire:click.prevent="store({{ $product->id}}, '{{$product->name}}', {{ $product->sale_price }})">
+                                                            <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                                                            <span>Add To Cart</span>
+                                                        </a>
+                                                    @else
+                                                        <a class="add-to-cart" href="#" wire:click.prevent="store({{ $product->id}}, '{{$product->name}}', {{ $product->regular_price }})">
+                                                            <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                                                            <span>Add To Cart</span>
+                                                        </a>
+                                                    @endif
+                                                    
                                                     
                                                     <a class="add-wishlist" href="#" >
                                                         <i class="fa fa-heart" aria-hidden="true"></i>												
@@ -329,9 +356,8 @@
                                                 </div>
                                                 <div class="item">
                                                     <span class="control-label">Categories :</span>
-                                                    <a href="#" title="Vegetables">Vegetables,</a>
-                                                    <a href="#" title="Fruits">Fruits,</a>
-                                                    <a href="#" title="Apple">Apple</a>
+                                                    <a href="#" title="Vegetables"></a>
+                                                    
                                                 </div>
                                                 <div class="item">
                                                     <span class="control-label">Tags :</span>
@@ -369,7 +395,7 @@
                                     <div class="tab-content">
                                         <!-- Description -->
                                         <div role="tabpanel" class="tab-pane fade in active" id="description">
-                                            {{$product->description}}
+                                            {!! $product->description !!}
                                         </div>
                                         
                                         <!-- Product Tag -->
@@ -489,8 +515,8 @@
                                         </div>
                                         
                                         <div class="product-price">
-                                            <span class="sale-price">=N={{ $r_product->regular_price }}</span>
-                                            <span class="base-price">=N=90.00</span>
+                                            <span class="sale-price">&#8358;{{ $r_product->regular_price }}</span>
+                                            <span class="base-price">&#8358;90.00</span>
                                         </div>
                                         
                                         <div class="product-buttons">

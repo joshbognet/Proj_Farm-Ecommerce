@@ -19,6 +19,9 @@ class SearchComponent extends Component
      
     public function mount()
     {
+        $this->min_price = 1;
+        $this->max_price = 1000;
+
         $this->sorting="default";
         $this->pagesize=12;
         $this->fill(request()->only('search', 'product_cat', 'product_id_cat'));
@@ -51,6 +54,6 @@ class SearchComponent extends Component
         }
         
         $categories = Category::all();
-        return view('livewire.shop-component', ['products'=>$products, 'categories'=>$categories])->layout('layouts.headercart');
+        return view('livewire.shop-component', ['products'=>$products, 'categories'=>$categories])->layout('layouts.master');
     }
 }
